@@ -1,3 +1,5 @@
+import { localStorageHelpers } from "../helpers/LocalStorageHelpers"
+
 export const fetchTodo = async (setIsLoading, setTasks) => {
     try {
         setIsLoading(true)
@@ -5,7 +7,7 @@ export const fetchTodo = async (setIsLoading, setTasks) => {
             method: 'GET',
             headers: {
                 accept: '*/*',
-                Authorization: `Bearer ${localStorage.getItem('token')}`
+                Authorization: `Bearer ${localStorageHelpers.getToken()}`
             }
 
         })
@@ -26,7 +28,7 @@ export const create = async (setTasks, setNewTask, newTask) => {
             {
                 accept: 'application/json',
                 "Content-Type": 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('token')}`
+                Authorization: `Bearer ${localStorageHelpers.getToken()}`
             },
             body: JSON.stringify(newTask)
         })
@@ -42,7 +44,7 @@ export const filterTodo = async (filter, setTasks) => {
             method: 'GET',
             headers: {
                 accept: '*/*',
-                Authorization: `Bearer ${localStorage.getItem('token')}`
+                Authorization: `Bearer ${localStorageHelpers.getToken()}`
             }
 
         })
@@ -59,7 +61,7 @@ export const isCompleted = async (id, setTasks) => {
             headers:
             {
                 accept: 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('token')}`
+                Authorization: `Bearer ${localStorageHelpers.getToken()}`
             }
         })
         setTasks(tasks => tasks.map(i => i.id == id ? { ...i, completed: !i.completed } : i))
@@ -75,7 +77,7 @@ export const deleteT = async (setTasks, id) => {
             headers:
             {
                 accept: 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('token')}`
+                Authorization: `Bearer ${localStorageHelpers.getToken()}`
             }
         })
         setTasks(tasks => tasks.filter(i => i.id != id))

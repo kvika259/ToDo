@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router';
+import { localStorageHelpers } from '../../helpers/LocalStorageHelpers';
+
 
 const LogOut = () => {    
     const navigate = useNavigate()
     const logout = () =>{
-        localStorage.clear()
+        localStorageHelpers.removeToken()
         navigate("/login")
     }
     return (
