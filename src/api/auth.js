@@ -15,7 +15,7 @@ export const login = async (user, navigate) => {
         localStorageHelpers.setToken(userInfo.access_token)
         navigate("/MyTask")
 
-    } catch (error) { }
+    } catch (error) { console.log(error) }
 }
 
 export const registr = async (user, navigate) => {
@@ -32,5 +32,5 @@ export const registr = async (user, navigate) => {
         const userInfo = await response.json()
         localStorageHelpers.setToken(userInfo.access_token)
         navigate("/MyTask")
-    } catch (error) { }
+    } catch (error) { console.log(error) }
 }

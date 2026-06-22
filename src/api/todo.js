@@ -13,7 +13,7 @@ export const fetchTodo = async (setIsLoading, setTasks) => {
         })
         const data = await response.json()
         setTasks(data.data)
-    } catch (error) { }
+    } catch (error) { console.log(error) }
     finally {
         setIsLoading(false);
     }
@@ -34,7 +34,7 @@ export const create = async (setTasks, setNewTask, newTask) => {
         })
         const data = await response.json()
         setTasks(tasks => [...tasks, data])
-    } catch (error) { }
+    } catch (error) { console.log(error) }
     setNewTask({ title: "", description: '' }) // обнуление строки ввода новой задачи после добавления
 }
 
@@ -50,7 +50,7 @@ export const filterTodo = async (filter, setTasks) => {
         })
         const data = await response.json()
         setTasks(data.data)
-    } catch (error) { }
+    } catch (error) { console.log(error) }
 }
 
 
@@ -65,7 +65,7 @@ export const isCompleted = async (id, setTasks) => {
             }
         })
         setTasks(tasks => tasks.map(i => i.id == id ? { ...i, completed: !i.completed } : i))
-    } catch (error) { }
+    } catch (error) { console.log(error) }
 }
 
 
