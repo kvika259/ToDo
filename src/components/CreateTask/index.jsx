@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { create } from "../../api/api"
+import { create } from "../../api/todo"
 
 const CreateTask =({setTasks}) =>{
     const [newTask, setNewTask] = useState({title:"", description:''})   

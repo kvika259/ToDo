@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Navigate, useNavigate } from 'react-router';
-import { login } from "../../api/api";
+import { login } from "../../api/auth";
 
 
 const Login = () => {

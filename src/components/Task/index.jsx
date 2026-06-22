@@ -1,5 +1,5 @@
 import DeleteTask from "../DeleteTask"
-import { isCompleted } from "../../api/api"
+import { isCompleted } from "../../api/todo"
 
 
 const Task = ({i, setTasks}) => {

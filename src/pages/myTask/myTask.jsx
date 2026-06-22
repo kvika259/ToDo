@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import List from "../../components/List";
 import CreateTask from "../../components/CreateTask";
 import LogOut from "../../components/LogOut";
-import { fetchTodo } from "../../api/api";
+import { fetchTodo } from "../../api/todo";
 
 
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { filterTodo } from "../../api/api";
+import { filterTodo } from "../../api/todo";
 
 const Filter = ({setTasks}) => {
 

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { deleteT } from "../../api/api"
+import { deleteT } from "../../api/todo"
 
 const DeleteTask =({setTasks,id}) =>{
     
