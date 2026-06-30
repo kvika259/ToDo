@@ -12,6 +12,7 @@ const List = () => {
         <Filter/>     
         <p>Список задач:</p>
         {loading && <div>Загрузка</div>}
+        {tasks.length === 0 && <div>Задач нет, добавьте первую</div>}
         <ol>{tasks && tasks.map((i)=><li key={i.id}><Task i ={i}/></li>)}
         </ol>
     </div>
