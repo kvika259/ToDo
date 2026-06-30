@@ -6,7 +6,8 @@ const tasksSlice = createSlice({
     name: 'tasks',
     initialState: {
         tasks: [],
-        loading: false
+        loading: false,
+        errors: null
     },
     reducers: {},
     extraReducers: builder => {
@@ -34,6 +35,12 @@ const tasksSlice = createSlice({
 
         builder.addMatcher((action) => action.type.endsWith('/pending'), // Условие: если запрос только начался
             (state) => { state.loading = true })
+
+        builder.addMatcher((action) => action.type.endsWith('/rejected'), // Условие: если тип экшена заканчивается на /rejected
+            (state, action) => {
+                state.loading = false;
+                state.errors = action.payload.message || 'Произошла ошибка';
+            })
     }
 })
 export default tasksSlice.reducer
