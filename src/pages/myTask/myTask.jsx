@@ -1,24 +1,22 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useDispatch} from 'react-redux'
 
 import List from "../../components/List";
 import CreateTask from "../../components/CreateTask";
 import LogOut from "../../components/LogOut";
-import { fetchTodo } from "../../api/todo";
-
+import {getTasks} from "../../api/todo";
 
 
 const MyTask = () => {
+    const dispatch = useDispatch()
 
-    const [tasks, setTasks] = useState([])
-    const [isLoading, setIsLoading] = useState(false)
+    useEffect(()=>{dispatch(getTasks())},[])
     
-
-    useEffect (()=>{fetchTodo(setIsLoading, setTasks)},[])
     
     return <>
     <LogOut/>
-    <CreateTask setTasks={setTasks}/>
-    <List tasks ={tasks} setTasks={setTasks} isLoading={isLoading}/>
+    <CreateTask/>
+    <List/>
     </>
 }
 

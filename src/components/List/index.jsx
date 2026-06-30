@@ -1,16 +1,18 @@
-import { useEffect, useState } from "react"
+import {useSelector} from 'react-redux'
+
 import Task from "../Task"
 import Filter from "../FilterTask"
 
 
-const List = ({tasks, setTasks, isLoading}) => {
+const List = () => {
       
+    const {tasks, loading} = useSelector((store) => store.tasks)
 
-    if(isLoading){return <div>Загрузка</div>}
     return <div>
-        <Filter setTasks={setTasks}/>     
+        <Filter/>     
         <p>Список задач:</p>
-        <ol>{tasks && tasks.map((i)=><li key={i.id}><Task i ={i} setTasks={setTasks}/></li>)}
+        {loading && <div>Загрузка</div>}
+        <ol>{tasks && tasks.map((i)=><li key={i.id}><Task i ={i}/></li>)}
         </ol>
     </div>
 }

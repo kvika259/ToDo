@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
-import { filterTodo } from "../../api/todo";
+import {useDispatch} from 'react-redux'
 
-const Filter = ({setTasks}) => {
+import { filterTasks } from "../../api/todo";
+
+
+const Filter = () => {
+    const dispatch = useDispatch()
 
     const [filter, setFilter] = useState('')
 
@@ -10,7 +14,7 @@ const Filter = ({setTasks}) => {
         }; 
 
 
-    useEffect(() => {filterTodo(filter, setTasks)}, [filter])
+    useEffect(() => {dispatch(filterTasks(filter))}, [filter])
 
     return <div>
                 <input type="radio" id="choice1" name="completed" value="" checked={filter === ''} onChange={handleFilterChange}/>

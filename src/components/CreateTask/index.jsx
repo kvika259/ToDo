@@ -1,17 +1,27 @@
 import { useState } from "react"
-import { create } from "../../api/todo"
+import {useDispatch} from 'react-redux'
 
-const CreateTask =({setTasks}) =>{
+import { createTask } from "../../api/todo"
+
+
+const CreateTask =() =>{
     const [newTask, setNewTask] = useState({title:"", description:''})   
+
+    const dispatch = useDispatch()
 
     const handleChange = (e) => {
         setNewTask((newTask)=>({...newTask, [e.target.name]: e.target.value}))
     }
 
+    const handleClick = () => {
+        dispatch(createTask(newTask))
+        setNewTask({ title: "", description: '' }) // обнуление строки ввода новой задачи после добавления
+    }
+
     return <div>
             <input value={newTask.title} name="title" onChange={handleChange} />
             <input value={newTask.description} name="description" onChange={handleChange} />
-            <button onClick={()=>create(setTasks, setNewTask, newTask)}>Добавить</button>
+            <button onClick={handleClick}>Добавить</button>
     </div>
 }
 

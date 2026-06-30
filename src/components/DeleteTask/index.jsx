@@ -1,9 +1,10 @@
-import { useState } from "react"
-import { deleteT } from "../../api/todo"
+import { deleteTask } from "../../api/todo"
+import {useDispatch} from 'react-redux'
 
-const DeleteTask =({setTasks,id}) =>{
+const DeleteTask =({id}) =>{
+    const dispatch = useDispatch()
     
-    return <button onClick={()=>deleteT(setTasks,id)}>🗑</button>
+    return <button onClick={()=>dispatch(deleteTask(id))}>🗑</button>
 }
 
 export default DeleteTask
