@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { getTasks, createTask, filterTasks, completedTask, deleteTask } from '../../api/todo'
+import { getTasks, createTask, filterTasks, completedTask, deleteTask, updatingTask } from '../../api/todo'
 
 
 const tasksSlice = createSlice({
@@ -30,6 +30,10 @@ const tasksSlice = createSlice({
         })
         builder.addCase(deleteTask.fulfilled, (state, action) => {
             state.tasks = state.tasks.filter(item => item.id != action.payload)
+            state.loading = false
+        })
+        builder.addCase(updatingTask.fulfilled, (state, action) => {
+            state.tasks = state.tasks.map(item => item.id === action.payload.id ? { ...item, title: action.payload.task.title, description: action.payload.task.description } : item)
             state.loading = false
         })
 

@@ -101,3 +101,26 @@ export const deleteTask = createAsyncThunk(
     }
 
 )
+
+
+export const updatingTask = createAsyncThunk(
+    'tasks/updateTask',
+    async (updateTask, thunkAPI) => {
+        try {
+            const response = await fetch(`${import.meta.env.VITE_URL}todos/${updateTask.id}`, {
+                method: 'PATCH',
+                headers:
+                {
+                    accept: '*/*',
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${localStorageHelpers.getToken()}`
+                },
+                body: JSON.stringify(updateTask.task)
+            })
+            return updateTask
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error)
+        }
+    }
+
+)

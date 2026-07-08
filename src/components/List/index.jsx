@@ -2,6 +2,7 @@ import {useSelector} from 'react-redux'
 
 import Task from "../Task"
 import Filter from "../FilterTask"
+import DeleteAllCompletedTasks from '../DeleteAllCompletedTasks'
 
 
 const List = () => {
@@ -15,6 +16,7 @@ const List = () => {
         {tasks.length === 0 && <div>Задач нет, добавьте первую</div>}
         <ol>{tasks && tasks.map((i)=><li key={i.id}><Task i ={i}/></li>)}
         </ol>
+        <DeleteAllCompletedTasks/>
     </div>
 }
 
