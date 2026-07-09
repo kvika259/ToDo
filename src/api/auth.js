@@ -1,4 +1,5 @@
 import { localStorageHelpers } from "../helpers/LocalStorageHelpers"
+import { errors } from "../helpers/errors"
 
 export const login = async (user, navigate) => {
     try {
@@ -11,11 +12,14 @@ export const login = async (user, navigate) => {
             },
             body: JSON.stringify(user)
         })
+
+        if (response.status !== 200) { throw new Error(`Ошибка : ${response.status}`); }
         const userInfo = await response.json()
+
         localStorageHelpers.setToken(userInfo.access_token)
         navigate("/MyTask")
 
-    } catch (error) { console.log(error) }
+    } catch (error) { errors(error) }
 }
 
 export const registr = async (user, navigate) => {
@@ -29,8 +33,12 @@ export const registr = async (user, navigate) => {
             },
             body: JSON.stringify(user)
         })
+
+        if (response.status !== 200) { throw new Error(response.status); }
         const userInfo = await response.json()
         localStorageHelpers.setToken(userInfo.access_token)
         navigate("/MyTask")
-    } catch (error) { console.log(error) }
+    } catch (error) {
+        errors(error.message)
+    }
 }

@@ -8,7 +8,8 @@ import DeleteAllCompletedTasks from '../DeleteAllCompletedTasks'
 const List = () => {
       
     const {tasks, loading} = useSelector((store) => store.tasks)
-
+    
+    console.log(tasks)
     return <div>
         <Filter/>     
         <p>Список задач:</p>
