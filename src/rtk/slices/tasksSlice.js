@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { getTasks, createTask, filterTasks, completedTask, deleteTask, updatingTask } from '../../api/todo'
 
 

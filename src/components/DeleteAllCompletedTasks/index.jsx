@@ -1,18 +1,16 @@
-import { deleteTask } from "../../api/todo"
-import {useDispatch, useSelector} from 'react-redux'
-
+import { deleteTask } from "../../api/todo";
+import { useDispatch, useSelector } from "react-redux";
 
 const DeleteAllCompletedTasks = () => {
+  const dispatch = useDispatch();
+  const tasks = useSelector(store => store.tasks.tasks);
+  const idComplitedTasks = tasks.filter(i => i.completed).map(i => i.id);
 
-    const dispatch = useDispatch()
-    const tasks = useSelector((store) => store.tasks.tasks)
-    const idComplitedTasks = tasks.filter(i=> i.completed == true).map(i=>i.id)
+  const handleClick = () => {
+    idComplitedTasks.forEach(i => dispatch(deleteTask(i)));
+  };
 
-    const handleClick = () =>{
-        idComplitedTasks.forEach(i => dispatch(deleteTask(i)));
-    }
+  return <button onClick={handleClick}>Удалить все завершённые</button>;
+};
 
-    return <button onClick={handleClick}>Удалить все завершённые</button>
-}
-
-export default DeleteAllCompletedTasks
+export default DeleteAllCompletedTasks;

@@ -1,10 +1,10 @@
-import { deleteTask } from "../../api/todo"
-import {useDispatch} from 'react-redux'
+import { deleteTask } from "../../api/todo";
+import { useDispatch } from "react-redux";
 
-const DeleteTask =({id}) =>{
-    const dispatch = useDispatch()
-    
-    return <button onClick={()=>dispatch(deleteTask(id))}>🗑</button>
-}
+const DeleteTask = ({ id }) => {
+  const dispatch = useDispatch();
 
-export default DeleteTask
+  return <button onClick={() => dispatch(deleteTask(id))}>🗑</button>;
+};
+
+export default DeleteTask;
